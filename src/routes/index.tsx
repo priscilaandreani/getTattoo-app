@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
-import { Switch, Route } from 'react-router-dom';
-
-import { FirstPage, SecondPage } from '../pages';
+import { Route, Switch } from 'react-router-dom';
+import { SecondPage, SignIn } from '../pages';
 
 const Routes: FC = () => (
   <Switch>
-    <Route path="/" exact component={FirstPage} />
+    <Route path="/" exact component={SignIn} />
     <Route path="/second" component={SecondPage} />
   </Switch>
 );

@@ -6,11 +6,17 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    outline: 0;
   }
 
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  @font-face {
+    font-family: 'Lordish';
+    src: local('Lordish'), url('%PUBLIC_URL%/static/fonts/Lordish.ttf') format('truetype');
   }
 
   body {
@@ -19,6 +25,18 @@ export default createGlobalStyle`
     text-rendering: optimizeSpeed;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+
+    background: #131314;
+    color: #fff;
+
+  }
+
+  h1{
+    font-family: 'Lordish';
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
   }
 
   ul,
@@ -39,7 +57,8 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 16px serif;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
   }
 
   @media (prefers-reduced-motion: reduce) {
