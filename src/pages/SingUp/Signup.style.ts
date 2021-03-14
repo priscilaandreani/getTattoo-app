@@ -1,7 +1,6 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
-import loginCover from '../../assets/login-cover.jpeg';
-
+import signupCover from '../../assets/signup-cover.jpg';
 
 export const Container = styled.div`
   height: 100vh;
@@ -17,9 +16,9 @@ export const Content = styled.div`
   align-items: center;
 
   width: 100%;
-  max-width:700px;
+  max-width: 700px;
 
-  >a {
+  > a {
     color: #fcce0f;
     text-decoration: none;
     transition: color 0.2s;
@@ -32,10 +31,9 @@ export const Content = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#fcce0f')}
+      color: ${shade(0.2, '#fcce0f')};
     }
   }
-
 
   form {
     margin: 32px;
@@ -49,14 +47,14 @@ export const Content = styled.div`
     }
 
     a {
-      color: #F4EDE8;
+      color: #f4ede8;
       text-decoration: none;
       display: block;
       margin-top: 24px;
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#F4EDE8')}
+        color: ${shade(0.2, '#F4EDE8')};
       }
     }
   }
@@ -64,8 +62,8 @@ export const Content = styled.div`
 
 export const Background = styled.div`
   flex: 1;
-  background:url(${loginCover}) no-repeat center;
-  background-size:cover;
+  background: url(${signupCover}) no-repeat center;
+  background-size: cover;
   filter: grayscale(100%);
   opacity: 0.9;
 `;
