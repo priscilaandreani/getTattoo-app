@@ -50,7 +50,11 @@ const Input: React.FC<InputProps> = ({
         {...rest}
         ref={inputRef}
       />
-      {error && <ErrorContainer><FiAlertCircle color="#c53030" size={20} /></ErrorContainer>}
+      {error && (
+        <ErrorContainer title={error}>
+          <FiAlertCircle color="#c53030" size={20} />
+        </ErrorContainer>
+      )}
     </Container>
   );
 };
