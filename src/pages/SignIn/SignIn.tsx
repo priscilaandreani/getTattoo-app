@@ -1,13 +1,13 @@
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import logoImg from '../../assets/logo.svg';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { Background, Container, Content } from './SignIn.style';
 
@@ -19,7 +19,7 @@ interface User {
 const SignIn: FC = () => {
   const formRef = React.useRef<FormHandles>(null);
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user } = useAuth();
 
   const handleSubmit = React.useCallback(
     async (data: User) => {
@@ -35,6 +35,7 @@ const SignIn: FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
+        console.log(user);
       } catch (err) {
         console.log(err);
 
