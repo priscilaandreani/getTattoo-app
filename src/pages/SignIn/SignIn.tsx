@@ -1,17 +1,17 @@
-import * as Yup from 'yup';
-import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import React, { FC } from 'react';
+import { Form } from '@unform/web';
+import React, { FC, useContext } from 'react';
 import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 import logoImg from '../../assets/logo.svg';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import { Background, Container, Content } from './SignIn.style';
+import { AuthContext } from '../../context/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { Background, Container, Content } from './SignIn.style';
 
 interface User {
-  name: string;
   email: string;
   password: string;
 }
@@ -19,27 +19,32 @@ interface User {
 const SignIn: FC = () => {
   const formRef = React.useRef<FormHandles>(null);
 
-  const handleSubmit = React.useCallback(async (data: User) => {
-    try {
-      formRef.current?.setErrors({});
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('Email obrigatório')
-          .email('Digite um email válido'),
-        password: Yup.string().required('Senha obrigatória'),
-      });
+  const { signIn } = useContext(AuthContext);
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      console.log(err);
+  const handleSubmit = React.useCallback(
+    async (data: User) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('Email obrigatório')
+            .email('Digite um email válido'),
+          password: Yup.string().required('Senha obrigatória'),
+        });
 
-      const errors = getValidationErrors(err);
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (err) {
+        console.log(err);
 
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [signIn],
+  );
   return (
     <Container>
       <Background />

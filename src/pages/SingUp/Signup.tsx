@@ -1,14 +1,13 @@
-import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
-
+import { Form } from '@unform/web';
 import React from 'react';
 import { FiArrowLeft, FiLock, FiMail, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import getValidationErrors from '../../utils/getValidationErrors';
+import * as Yup from 'yup';
 import logoImg from '../../assets/logo.svg';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import getValidationErrors from '../../utils/getValidationErrors';
 import { Background, Container, Content } from './Signup.style';
 
 interface User {
