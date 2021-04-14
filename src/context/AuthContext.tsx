@@ -10,13 +10,14 @@ interface CredentialsData {
 interface AuthContextData {
   user: object;
   signIn(credentials: CredentialsData): Promise<void>;
+  signOut(): void;
 }
 
 interface AuthProvider {
   children: any;
 }
 
-interface AuthData {
+interface AuthStateData {
   token: string;
   user: object;
 }
@@ -24,18 +25,18 @@ interface AuthData {
 const AuthContext = createContext({} as AuthContextData);
 
 const AuthContextProvider = ({ children }: AuthProvider) => {
-  const [data, setData] = useState<AuthData>(() => {
+  const [data, setData] = useState<AuthStateData>(() => {
     const token = localStorage.getItem('@Tatto:token');
     const user = localStorage.getItem('@Tatto:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
     }
-    return {} as AuthData;
+    return {} as AuthStateData;
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post<AuthData>('/sessions', {
+    const response = await api.post<AuthStateData>('/sessions', {
       email,
       password,
     });
@@ -48,8 +49,15 @@ const AuthContextProvider = ({ children }: AuthProvider) => {
     setData({ token, user });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@Tatto:token');
+    localStorage.removeItem('@Tatto:user');
+
+    setData({} as AuthStateData);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

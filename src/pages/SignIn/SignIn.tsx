@@ -19,7 +19,7 @@ interface User {
 const SignIn: FC = () => {
   const formRef = React.useRef<FormHandles>(null);
 
-  const { signIn, user } = useAuth();
+  const { signIn, signOut } = useAuth();
 
   const handleSubmit = React.useCallback(
     async (data: User) => {
@@ -35,7 +35,6 @@ const SignIn: FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        console.log(user);
       } catch (err) {
         console.log(err);
 
