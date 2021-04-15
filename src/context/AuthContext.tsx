@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import api from '../services/api';
 
 interface CredentialsData {
@@ -17,7 +16,7 @@ interface AuthContextData {
 }
 
 interface AuthProvider {
-  children: any;
+  children?: ReactNode;
 }
 
 interface AuthStateData {
