@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import React, { createContext, useCallback, useContext, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
+import React from 'react';
 import api from '../services/api';
 
 interface CredentialsData {
@@ -22,10 +25,10 @@ interface AuthStateData {
   user: object;
 }
 
-const AuthContext = createContext({} as AuthContextData);
+const AuthContext = React.createContext({} as AuthContextData);
 
 const AuthContextProvider = ({ children }: AuthProvider) => {
-  const [data, setData] = useState<AuthStateData>(() => {
+  const [data, setData] = React.useState<AuthStateData>(() => {
     const token = localStorage.getItem('@Tatto:token');
     const user = localStorage.getItem('@Tatto:user');
 
@@ -35,7 +38,7 @@ const AuthContextProvider = ({ children }: AuthProvider) => {
     return {} as AuthStateData;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
+  const signIn = React.useCallback(async ({ email, password }) => {
     const response = await api.post<AuthStateData>('/sessions', {
       email,
       password,
@@ -49,7 +52,7 @@ const AuthContextProvider = ({ children }: AuthProvider) => {
     setData({ token, user });
   }, []);
 
-  const signOut = useCallback(() => {
+  const signOut = React.useCallback(() => {
     localStorage.removeItem('@Tatto:token');
     localStorage.removeItem('@Tatto:user');
 
@@ -64,7 +67,7 @@ const AuthContextProvider = ({ children }: AuthProvider) => {
 };
 
 function useAuth(): AuthContextData {
-  const context = useContext(AuthContext);
+  const context = React.useContext(AuthContext);
 
   if (!context) {
     throw new Error('Must be used with an AuthProvider');

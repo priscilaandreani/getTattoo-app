@@ -19,7 +19,7 @@ interface User {
 const SignIn: FC = () => {
   const formRef = React.useRef<FormHandles>(null);
 
-  const { signIn, signOut } = useAuth();
+  const { signIn } = useAuth();
 
   const handleSubmit = React.useCallback(
     async (data: User) => {
@@ -36,8 +36,6 @@ const SignIn: FC = () => {
           abortEarly: false,
         });
       } catch (err) {
-        console.log(err);
-
         const errors = getValidationErrors(err);
 
         formRef.current?.setErrors(errors);

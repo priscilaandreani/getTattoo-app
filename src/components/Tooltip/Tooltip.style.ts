@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
@@ -9,13 +9,13 @@ export const Container = styled.div`
     left: 1%;
 
     width: max-content;
-    
+
     padding: 8px;
     border-radius: 4px;
     background-color: #131314;
     z-index: 10;
-    
-    opacity:0;
+
+    opacity: 0;
     visibility: hidden;
 
     border: 1px solid #fcce0f;
@@ -38,13 +38,10 @@ export const Container = styled.div`
 
       transform: rotate(180deg);
     }
-
   }
 
-  &:hover span { 
+  &:hover span {
     opacity: 1;
     visibility: visible;
-
   }
-
-`; 
+`;

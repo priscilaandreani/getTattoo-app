@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-
 import Tooltip from '../Tooltip/Tooltip';
 
 interface ContainerProps {
@@ -24,7 +23,7 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 8px;
   }
 
-${props =>
+  ${props =>
     props.isErrored &&
     css`
       border-color: #c53030;
@@ -62,7 +61,7 @@ ${props =>
 export const ErrorContainer = styled(Tooltip)`
   height: 20px;
   margin-left: 16px;
-  
+
   svg {
     margin: 0;
   }
@@ -71,9 +70,8 @@ export const ErrorContainer = styled(Tooltip)`
     border-color: #c53030;
     background-color: #c53030;
     color: #fff;
-    
 
-    &::before{ 
+    &::before {
       border-color: #c53030 transparent;
     }
   }
