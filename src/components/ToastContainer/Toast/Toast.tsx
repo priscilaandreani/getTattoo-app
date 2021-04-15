@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
 import React from 'react';
 import {
   FiAlertCircle,
@@ -10,6 +12,7 @@ import { ContainerToast } from './Toast.style';
 
 interface ToastProps {
   msg: ToastMessageData;
+  style: object;
 }
 
 const icons = {
@@ -18,7 +21,7 @@ const icons = {
   success: <FiCheckCircle size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ msg }) => {
+const Toast: React.FC<ToastProps> = ({ msg, style }) => {
   const { removeToast } = useToast();
 
   React.useEffect(() => {
@@ -32,7 +35,11 @@ const Toast: React.FC<ToastProps> = ({ msg }) => {
   }, [msg.id, removeToast]);
 
   return (
-    <ContainerToast type={msg.type} hasDescripton={!!msg.description}>
+    <ContainerToast
+      type={msg.type}
+      hasDescripton={!!msg.description}
+      style={style}
+    >
       {icons[msg.type || 'info']}
       <div>
         <strong>{msg.title}</strong>
