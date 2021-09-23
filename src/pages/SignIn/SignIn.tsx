@@ -10,7 +10,12 @@ import Input from '../../components/Input/Input';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { Background, Container, Content } from './SignIn.style';
+import {
+  AnimationContent,
+  Background,
+  Container,
+  Content,
+} from './SignIn.style';
 
 interface User {
   email: string;
@@ -61,30 +66,31 @@ const SignIn: FC = () => {
   return (
     <Container>
       <Background />
+      <AnimationContent>
+        <Content>
+          <img src={logoImg} alt="logo" />
 
-      <Content>
-        <img src={logoImg} alt="logo" />
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu logon</h1>
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu logon</h1>
-
-          <Input name="email" type="text" placeholder="Email" icon={FiMail} />
-          <Input
-            name="password"
-            type="password"
-            placeholder="Senha"
-            icon={FiLock}
-          />
-          <Button type="submit">Entrar</Button>
-          <Link type="button" to="/forgot">
-            Esqueci minha senha
+            <Input name="email" type="text" placeholder="Email" icon={FiMail} />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              icon={FiLock}
+            />
+            <Button type="submit">Entrar</Button>
+            <Link type="button" to="/forgot">
+              Esqueci minha senha
+            </Link>
+          </Form>
+          <Link type="button" to="/signup">
+            <FiLogIn />
+            Criar conta
           </Link>
-        </Form>
-        <Link type="button" to="/signup">
-          <FiLogIn />
-          Criar conta
-        </Link>
-      </Content>
+        </Content>
+      </AnimationContent>
     </Container>
   );
 };

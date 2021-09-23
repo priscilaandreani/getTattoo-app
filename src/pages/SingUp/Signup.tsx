@@ -10,7 +10,12 @@ import Input from '../../components/Input/Input';
 import { useToast } from '../../context/ToastContext';
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { Background, Container, Content } from './Signup.style';
+import {
+  Background,
+  Container,
+  AnimationContent,
+  Content,
+} from './Signup.style';
 
 interface User {
   name: string;
@@ -74,26 +79,33 @@ const SignUp: React.FC = () => {
 
   return (
     <Container>
-      <Content>
-        <img src={logoImg} alt="logo" />
+      <AnimationContent>
+        <Content>
+          <img src={logoImg} alt="logo" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu cadastro</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu cadastro</h1>
 
-          <Input name="name" type="text" placeholder="Nome" icon={FiUser} />
-          <Input name="email" type="email" placeholder="Email" icon={FiMail} />
-          <Input
-            name="password"
-            type="password"
-            placeholder="Senha"
-            icon={FiLock}
-          />
-          <Button type="submit">Cadastrar</Button>
-          <Link type="button" to="/">
-            <FiArrowLeft /> Voltar para login
-          </Link>
-        </Form>
-      </Content>
+            <Input name="name" type="text" placeholder="Nome" icon={FiUser} />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              icon={FiMail}
+            />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              icon={FiLock}
+            />
+            <Button type="submit">Cadastrar</Button>
+            <Link type="button" to="/">
+              <FiArrowLeft /> Voltar para login
+            </Link>
+          </Form>
+        </Content>
+      </AnimationContent>
       <Background />
     </Container>
   );

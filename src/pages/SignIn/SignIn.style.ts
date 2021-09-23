@@ -1,5 +1,5 @@
 import { shade } from 'polished';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import loginCover from '../../assets/login-cover.jpeg';
 
 export const Container = styled.div`
@@ -34,6 +34,26 @@ export const Content = styled.div`
       color: ${shade(0.2, '#fcce0f')};
     }
   }
+`;
+
+export const apperFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+
+  animation: ${apperFromLeft} 1s;
 
   form {
     margin: 32px;
